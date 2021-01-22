@@ -10,7 +10,7 @@ import {
   Dimensions,
 } from "react-native";
 
-import { firebaseAuth } from '../../environment/config';
+import auth from '@react-native-firebase/auth';
 
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {NavigationContainer} from '@react-navigation/native';
@@ -24,12 +24,12 @@ export default class options extends React.Component{
 
 
 componentDidMount() {
-    const { currentUser } = firebaseAuth;
+    const { currentUser } = auth();
     this.setState({ currentUser })
 }
 
 onPressButton = () => {
-    firebaseAuth.signOut()
+    auth().signOut()
         .then(() => this.props.navigation.navigate('Login'))
         .catch(error => this.setState({ errorMessage: error.message }));
 }
@@ -57,7 +57,7 @@ render(){
         </View>
 
         <View style={styles.MainContainer}>
-          <TouchableOpacity style={styles.btnContainer}>
+          <TouchableOpacity style={styles.btnContainer} onPress={()=>this.props.navigation.navigate('Consult')}>
             <Image
               //source={require("./assets/consult.jpeg")}
               style={styles.ImageIconStyle}
@@ -66,7 +66,7 @@ render(){
             <Text style={styles.btnText}>CONSULT</Text>
           </TouchableOpacity>
           <View style={styles.container}>
-                <Text>
+                <Text style={{color: 'white'}}>
                     Hi {currentUser && currentUser.email}!
                 </Text>
                 <View>

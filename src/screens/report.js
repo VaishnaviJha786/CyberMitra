@@ -12,6 +12,7 @@ import {
   Alert,
 } from "react-native";
 import { addReport, getReport } from "../API/api";
+import UploadScreen from './upload';
 const { width: WIDTH } = Dimensions.get("window");
 
 class report extends Component {
@@ -69,6 +70,9 @@ class report extends Component {
             onChangeText={rep=>{this.setState({rep})}}
           />
         </View>
+        <View style={styles.upload}>
+          <UploadScreen />
+        </View>
         <View style={styles.submit}>
           <TouchableOpacity
             style={styles.btnContainer}
@@ -90,11 +94,16 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "flex-start",
   },
+  upload:{
+    alignContent: "center",
+    alignItems:"center",
+    width: "100%"
+  },
   text1: {
     fontSize: 30,
     fontWeight: "bold",
     color: "white",
-    paddingTop: 100,
+    paddingTop: 10,
     paddingLeft: 30,
   },
   text2: {
@@ -122,7 +131,7 @@ const styles = StyleSheet.create({
   },
   Maininput: {
     width: WIDTH - 55,
-    height: 250,
+    height: 90,
     fontSize: 20,
     marginHorizontal: 25,
     color: "rgba(255,255,255,0.7)",

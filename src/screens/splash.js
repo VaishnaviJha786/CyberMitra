@@ -12,7 +12,7 @@ export default class splashScreen extends Component {
     }, 6000);
   }
   moveToNextScreen = () => {
-    this.props.navigation.dispatch(StackActions.replace('Loading'));
+    this.props.navigation.dispatch(StackActions.replace('Home'));
   };
   render() {
     return (

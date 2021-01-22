@@ -11,13 +11,13 @@ import {
 
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-import { firebaseAuth } from '../../environment/config';
+import auth from '@react-native-firebase/auth';
 
 export default class SignUp extends React.Component {
   state = { email: '', password: '', errorMessage: null }
   handleSignUp = () => {
      
-      firebaseAuth.createUserWithEmailAndPassword(this.state.email, this.state.password)
+      auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
           .then(() => this.props.navigation.navigate('Login'))
           .catch(error => this.setState({ errorMessage: error.message }));
           console.log('handleSignUp')
@@ -80,7 +80,7 @@ export default class SignUp extends React.Component {
           <View style={styles.vtext}>
             <TouchableOpacity onPress={this.handleSignUp}> 
             <View style={styles.btnContainer}>
-              <Text style={styles.btnText}onPress={()=>this.props.navigation.navigate('Login')}>SIGN IN</Text>
+              <Text style={styles.btnText}onPress={this.handleSignUp}>SIGN IN</Text>
             </View>
             </TouchableOpacity>
           </View>

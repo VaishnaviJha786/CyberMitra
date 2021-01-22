@@ -1,16 +1,75 @@
 import React from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ImageBackground, Image, Dimensions, TouchableOpacity } from 'react-native';
-import { firebaseAuth } from '../../environment/config';
+import auth from '@react-native-firebase/auth';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const { width: WIDTH } = Dimensions.get("window");
 
-export default class login extends React.Component {
+ class userLogin extends React.Component {
   state = { email: '', password: '', errorMessage: null }
   handleLogin = () => {
     console.log('handleLogin')
-    firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password)
+    auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => this.props.navigation.navigate('Options'))
       .catch(error => this.setState({ errorMessage: error.message }))
+  }
+  render() {
+    return (
+      <ImageBackground
+        style={styles.background}
+        source={require("../assets/img1.jpg")}
+      >
+        <View style={styles.vtext}>
+          <Text style={styles.textcontainer}>LOG IN</Text>
+          {this.state.errorMessage &&
+            <Text style={{ color: 'red' }}>
+              {this.state.errorMessage}
+            </Text>}
+          <Text style={styles.text2}>Welcome to Cyber-Mitra</Text>
+        </View>
+        <View style={styles.container}>
+          <TextInput
+            style={styles.input}
+            placeholder={"Username"}
+            placeholderTextColor={"rgba(255,255,255,0.7)"}
+            underlineColorAndroid="transparent"
+            onChangeText={email => this.setState({ email })}
+            value={this.state.email}
+          />
+          <View style={styles.container}>
+            <TextInput
+              style={styles.input}
+              placeholder={"Password"}
+              secureTextEntry={true}
+              placeholderTextColor={"rgba(255,255,255,0.7)"}
+              underlineColorAndroid="transparent"
+              onChangeText={password => this.setState({ password })}
+              value={this.state.password}
+            />
+          </View>
+          <View style={styles.vtext}>
+            <TouchableOpacity onPress={this.handleLogin}> 
+            <View style={styles.btnContainer}>
+              <Text style={styles.btnText} onPress={this.handleLogin}>LOG IN</Text>
+            </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ImageBackground>
+    );
+  }
+
+}
+ class adminLogin extends React.Component {
+  state = { email: '', password: '', errorMessage: null }
+  handleLogin = () => {
+    console.log('handleAdminLogin')
+    
+      if(this.state.email==='admin@gmail.com'&& this.state.password==='cyber-mitra')
+
+        this.props.navigation.navigate('Reports')
+      else
+       this.setState({ errorMessage: 'Enter valid credentials' })
   }
   render() {
     return (
@@ -113,3 +172,25 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
+
+const RootStack = createBottomTabNavigator();
+
+
+
+const login=()=>{
+  return(
+    <RootStack.Navigator tabBarOptions={{
+      activeTintColor: 'black',
+      inactiveTintColor: 'gray',
+      
+      activeBackgroundColor: '#2980b9',
+      inactiveBackgroundColor: 'black',
+      labelStyle:{fontSize:20,},
+      style:{justifyContent:'center'}
+    }} >
+      <RootStack.Screen name="User-Login" component={userLogin}/>
+      <RootStack.Screen name="Admin-Login" component={adminLogin}/>
+    </RootStack.Navigator>
+  );
+}
+export default login;

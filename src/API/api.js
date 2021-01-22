@@ -1,19 +1,32 @@
-import * as  firebase from 'firebase';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import { Alert } from 'react-native';
+import storage from '@react-native-firebase/storage';
+import { StackActions } from '@react-navigation/native';
 
-  export function addReport(report,addComplete){
-const user=firebase.auth().currentUser;
-timeNow=new Date().toISOString();
+export function addReport(report){
+    var user=auth().currentUser;
+    var timeNow=firestore.Timestamp.now();
+     
+    var timestamp = new Date(timeNow.toDate()).toISOString();
+    var reportId=timestamp+" "+user.email;
 
-    firebase.firestore()
+
+    firestore()
     .collection('Reports')
-    .doc(timeNow+" "+user.email)
+    .doc(reportId)
     .set({
         rep: report.rep,
         sub: report.sub,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        createdAt: firestore.FieldValue.serverTimestamp(),
         createdBy: user.email
-    }).then((data) => addComplete(data))
+    }).then(Alert.alert("Incident reported Successfully",
+    "Your Report was added successfully",
+
+    )
+    )
     .catch((error) => console.log(error));
+    this.props.navigation.navigate('Options');
 }
   
 export async function getReport(reportRetrieved)

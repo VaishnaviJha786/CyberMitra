@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "806543750024",
+    "firebase_url": "https://cybermitra-92ff0.firebaseio.com",
+    "project_id": "cybermitra-92ff0",
+    "storage_bucket": "cybermitra-92ff0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806543750024:android:91ea68da4670f5903ac03d",
+        "android_client_info": {
+          "package_name": "com.cb3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "806543750024-e9e48e0g2e8964h8fno30vud0hju48qm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa8ldyDJRnzQRdBA7mG8pBG-5a6C6w6N4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "806543750024-e9e48e0g2e8964h8fno30vud0hju48qm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

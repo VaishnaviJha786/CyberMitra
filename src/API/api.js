@@ -1,8 +1,7 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { Alert } from 'react-native';
-import storage from '@react-native-firebase/storage';
-import { StackActions } from '@react-navigation/native';
+
 
 export function addReport(report){
     var user=auth().currentUser;
@@ -26,7 +25,10 @@ export function addReport(report){
     )
     )
     .catch((error) => console.log(error));
-    this.props.navigation.navigate('Options');
+    
+
+    
+    
 }
   
 export async function getReport(reportRetrieved)

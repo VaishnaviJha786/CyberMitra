@@ -41,6 +41,7 @@ class report extends Component {
       ],
       { cancelable: false }
     );
+    this.props.navigation.navigate('Options');
   };
   
   render() {

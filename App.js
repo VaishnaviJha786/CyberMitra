@@ -19,9 +19,9 @@ import options from './src/screens/options';
 import Loading from './src/screens/Loading';
 import {firebase} from '@react-native-firebase/app';
 import UploadScreen from './src/screens/upload';
-import {addReport} from './src/API/api'
-import AdminScreen from './src/screens/adminReport'
-import consult from './src/screens/consult'
+
+import AdminScreen from './src/screens/adminReport';
+import consult from './src/screens/consult';
 const firebaseConfig = {
   apiKey: "AIzaSyC6iQfO1yO275fItOrzq-_RX7kon3LjlWI",
     authDomain: "cybermitra-92ff0.firebaseapp.com",
@@ -52,7 +52,7 @@ const App= () => {
         <Stack.Screen name="Sign Up" component={signUp}/>
         <Stack.Screen name="Loading" component={Loading}/>
         <Stack.Screen name="Upload" component={UploadScreen}/>
-        <Stack.Screen name="addReport" component={addReport}/>
+       
         <Stack.Screen name="Reports" component={AdminScreen}/>
        </Stack.Navigator>
     </View>

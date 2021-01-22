@@ -79,12 +79,12 @@ const selectImage = () => {
     }
     setUploading(false);
     
-    
+    setImageUploaded(false);
     Alert.alert(
       'Photo uploaded!',
       'Your photo has been uploaded to Firebase Cloud Storage!'
     );
-    setImageUploaded(true);
+    
   };
 
   const removeImage=()=>{
